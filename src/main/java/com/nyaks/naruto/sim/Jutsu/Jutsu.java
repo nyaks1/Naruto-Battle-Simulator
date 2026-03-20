@@ -8,7 +8,7 @@ public abstract class Jutsu {
     private double damage;
 
     public enum TypeOfJutsu {
-        NINJUTSU, TAIJUTSU, GENJUTSU, YIN, YAN, YIN_YAN
+        NINJUTSU, TAIJUTSU, GENJUTSU, YANG, YIN, YIN_YANG
     }
     public enum ChakraAffinity {
         FIRE, WIND, WATER, LIGHTNING, EARTH
