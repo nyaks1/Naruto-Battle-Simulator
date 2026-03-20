@@ -2,20 +2,16 @@ package main.java.com.nyaks.naruto.sim.Jutsu;
 
 public abstract class Jutsu {
     private String name;
-    private String type;
-    private String affinity;
+    private TypeOfJutsu type;
+    private ChakraAffinity affinity;
     private int chakraCost;
-    private float damage;
+    private double damage;
 
-    enum TypeOfJutsu {
-        Ninjutsu,
-        Taijutsu,
-        Genjutsu
+    public enum TypeOfJutsu {
+        NINJUTSU, TAIJUTSU, GENJUTSU, YIN, YAN, YIN_YAN
     }
-    enum chakraAffinity {
-        Fire,
-        Wind,
-        Water,
-        Lightning
+    public enum ChakraAffinity {
+        FIRE, WIND, WATER, LIGHTNING, EARTH
     }
+
 }

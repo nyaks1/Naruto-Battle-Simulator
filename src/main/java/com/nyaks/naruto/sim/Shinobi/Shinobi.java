@@ -6,8 +6,14 @@ public class Shinobi {
     private String village;
     private String clan;
     private String chakra;
-    private String rank;
-    private float health;
+    private ShinobiRank rank; 
+    private double health;
     
-    
+    public enum ShinobiRank {
+        ACADEMY_STUDENT, GENIN, CHUNIN, TOKUBETSU_JONIN, JONIN,KAGE
+    }
+
+    public Shinobi(String name, String village, String chakra, ShinobiRank rank, double health) {
+        
+    }
 }
