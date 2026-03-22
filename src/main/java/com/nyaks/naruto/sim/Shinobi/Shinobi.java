@@ -1,32 +1,34 @@
 package main.java.com.nyaks.naruto.sim.Shinobi;
 
 import main.java.com.nyaks.naruto.sim.Clan.Clan;
-
+import main.java.com.nyaks.naruto.sim.enums.*;
 public class Shinobi {
 
     private String name;
-    private NameOfVillage village;
+    private Village village;
     private Clan clan;
     private int chakra;
     private ShinobiRank rank; 
     private double health;
     
-    public enum NameOfVillage {
-        KONOHAGAKURE,KUMOGAKURE, IWAGAKURE, KIRIGAKURE, SUNAGAKURE
-    }
-    public enum ShinobiRank {
-        ACADEMY_STUDENT, GENIN, CHUNIN, TOKUBETSU_JONIN, JONIN,KAGE
-    }
 
-    public Shinobi(String name, NameOfVillage village, int chakra, ShinobiRank rank, double health, Clan clan) {
-        // if (clan == null) {}
+    
+
+    public Shinobi(String name, Village village, int chakra, ShinobiRank rank, double health, Clan clan) {
         this.name = name;
         this.village = village;
         this.chakra = chakra;
         this.clan = clan;
         this.health = health;  
         this.rank = rank; 
+        rank = ShinobiRank.ACADEMY_STUDENT;
 
+    }
+    public Shinobi( String name, Village village, int chakra, ShinobiRank rank, double health) {
+        this.name = name;
+        this.village = village;
+        this.chakra = chakra;
+        this.health = health;
     }
 
     public String getName() {
@@ -37,11 +39,11 @@ public class Shinobi {
         this.name = name;
     }
 
-    public NameOfVillage getVillage() {
+    public Village getVillage() {
         return village;
     }
 
-    public void setVillage(NameOfVillage village) {
+    public void setVillage(Village village) {
         this.village = village;
     }
 
