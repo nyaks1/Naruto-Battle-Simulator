@@ -65,7 +65,7 @@ This project serves as a showcase of the four pillars of Object-Oriented Program
 
 ## 🎮 Key Features
 
-* **Preset Roster**: Choose to play as Naruto Uzumaki, Sasuke Uchiha, Kakashi Hatake, Gaara, Itachi Uchiha, or Rock Lee—each fully custom-tailored with their lore-accurate clans, elements, and starting techniques.
+* **Preset Roster**: Choose to play as Naruto Uzumaki, Sasuke Uchiha, Kakashi Hatake, Gaara, Itachi Uchiha, or Rock Lee. See the full list of characters, stats, and signature moves in [characters.md](file:///home/nyaks/Naruto-Battle-Simulator/characters.md).
 * **Custom Shinobi Creator**: Design your own custom shinobi from scratch. Name them, select their Hidden Village, assign them to a legendary Clan (Uzumaki, Uchiha, Senju, Hyuga, Kazekage), or customize their Chakra Affinity.
 * **Tactical Turn-Based Combat**:
   - **Basic Attacks**: Deal physical damage and restore +15 CP (Chakra).
