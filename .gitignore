@@ -1,0 +1,12 @@
+# Build outputs
+bin/
+target/
+
+# IDE/Editor configurations
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+*.class
