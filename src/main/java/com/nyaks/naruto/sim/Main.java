@@ -138,18 +138,21 @@ public class Main {
 
     private static Shinobi createNaruto() {
         Shinobi n = new Shinobi("Naruto Uzumaki", Village.KONOHAGAKURE, 90, ShinobiRank.GENIN, 120.0, uzumaki);
-        n.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 28.0, 0.0, "Spinning kick sweeps the feet."));
-        n.learnJutsu(new Ninjutsu("Rasengan", ChakraAffinity.WIND, 50, 75.0, "Spinning sphere of chakra."));
-        n.learnJutsu(new Ninjutsu("Fireball Jutsu", ChakraAffinity.FIRE, 25, 35.0, "Learned for element coverage."));
+        n.learnJutsu(new Taijutsu("Shadow Clone Jutsu", 15, 30.0, 0.0, "Naruto/Konohamaru clones strike in kinetic cohesion."));
+        n.learnJutsu(new Ninjutsu("Rasengan", ChakraAffinity.WIND, 50, 75.0, "A spinning sphere of concentrated chakra in the palm."));
+        n.learnJutsu(new Ninjutsu("Rasenshuriken", ChakraAffinity.WIND, 65, 95.0, "Naruto's wind-infused spinning blade of chakra that shreads target's cells."));
+        n.learnJutsu(new Ninjutsu("Tailed Beast Bomb", ChakraAffinity.WIND, 90, 130.0, "Condenses positive and negative chakra into a massive, god-tier blast."));
         n.addRyo(50);
         return n;
     }
 
     private static Shinobi createSasuke() {
         Shinobi s = new Shinobi("Sasuke Uchiha", Village.KONOHAGAKURE, 80, ShinobiRank.GENIN, 100.0, uchiha);
-        s.learnJutsu(new Ninjutsu("Fireball Jutsu", ChakraAffinity.FIRE, 25, 38.0, "Uchiha trademark fire breath."));
-        s.learnJutsu(new Ninjutsu("Chidori", ChakraAffinity.LIGHTNING, 55, 80.0, "Lightning chakra thrust."));
-        s.learnJutsu(new Genjutsu("Tree Bind Death", 25, 15.0, 0.65, "Illusory restraint."));
+        s.learnJutsu(new Ninjutsu("Fireball Jutsu", ChakraAffinity.FIRE, 25, 35.0, "Shoots a giant sphere of fire from the mouth."));
+        s.learnJutsu(new Ninjutsu("Chidori", ChakraAffinity.LIGHTNING, 55, 80.0, "Concentrates lightning chakra into the hand, chirping like a thousand birds."));
+        s.learnJutsu(new Ninjutsu("Kirin", ChakraAffinity.LIGHTNING, 70, 105.0, "Sasuke guides natural lightning from clouds down in the shape of Kirin."));
+        s.learnJutsu(new Ninjutsu("Amaterasu", ChakraAffinity.FIRE, 60, 85.0, "Uchiha Mangekyo Sharingan ability: casts black flames."));
+        s.learnJutsu(new Genjutsu("Amenotejikara", 20, 10.0, 0.60, "Sasuke swaps positions via Rinnegan space-time swapping, stunning the target."));
         s.addRyo(50);
         return s;
     }
@@ -157,37 +160,38 @@ public class Main {
     private static Shinobi createKakashi() {
         Shinobi k = new Shinobi("Kakashi Hatake", Village.KONOHAGAKURE, 85, ShinobiRank.JONIN, 110.0, null);
         k.setCustomAffinity(ChakraAffinity.LIGHTNING);
-        k.learnJutsu(new Ninjutsu("Chidori", ChakraAffinity.LIGHTNING, 55, 78.0, "A thrust of crackling blue chakra."));
-        k.learnJutsu(new Ninjutsu("Water Jet", ChakraAffinity.WATER, 15, 22.0, "Fires a sharp jet of water."));
-        k.learnJutsu(new Taijutsu("Dynamic Entry", 0, 20.0, 0.0, "A sudden dynamic flying kick!"));
+        k.learnJutsu(new Ninjutsu("Lightning Blade", ChakraAffinity.LIGHTNING, 45, 65.0, "Kakashi's Raikiri, lightning focused for a high-speed piercing jab."));
+        k.learnJutsu(new Ninjutsu("Earth Spike", ChakraAffinity.EARTH, 18, 25.0, "Raises sharp rock spikes from the ground."));
+        k.learnJutsu(new Ninjutsu("Water Dragon Bullet", ChakraAffinity.WATER, 45, 65.0, "Shapes a giant dragon out of water to crush the opponent."));
+        k.learnJutsu(new Genjutsu("Kamui", 50, 30.0, 0.80, "Kakashi warps space around target's limbs, causing damage and a heavy stun."));
+        k.learnJutsu(new Taijutsu("1000 Years of Death", 0, 15.0, 0.0, "Comedic finger-jab from behind."));
         k.addRyo(100);
         return k;
     }
 
     private static Shinobi createGaara() {
-        Shinobi g = new Shinobi("Gaara", Village.KIRIGAKURE, 90, ShinobiRank.GENIN, 110.0, kazekage);
-        g.learnJutsu(new Ninjutsu("Earth Spike", ChakraAffinity.EARTH, 18, 25.0, "Raises sharp spikes."));
-        g.learnJutsu(new Ninjutsu("Earth Golem", ChakraAffinity.EARTH, 48, 65.0, "Crushes under massive stone fists."));
-        g.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 30.0, 0.0, "Sweeps the opponent with physical strength."));
+        Shinobi g = new Shinobi("Gaara", Village.SUNAGAKURE, 90, ShinobiRank.GENIN, 110.0, kazekage);
+        g.learnJutsu(new Ninjutsu("Sand Coffin & Burial", ChakraAffinity.EARTH, 45, 65.0, "Gaara binds target in sand and implodes it under extreme pressure."));
+        g.learnJutsu(new Ninjutsu("Sand Tsunami", ChakraAffinity.EARTH, 75, 95.0, "Creates a massive tidal wave of sand to crush opponents."));
+        g.learnJutsu(new Ninjutsu("Wind Cutter", ChakraAffinity.WIND, 20, 28.0, "Slashes the opponent with compressed wind blades."));
         return g;
     }
 
     private static Shinobi createItachi() {
         Shinobi i = new Shinobi("Itachi Uchiha", Village.KONOHAGAKURE, 100, ShinobiRank.JONIN, 90.0, uchiha);
-        i.learnJutsu(new Genjutsu("Tsukuyomi", 60, 45.0, 0.85, "Ultimate illusion that traps target's mind."));
-        i.learnJutsu(new Ninjutsu("Dragon Fire Technique", ChakraAffinity.FIRE, 40, 55.0, "Channels intense flames."));
-        i.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 30.0, 0.0, "Dynamic kick."));
+        i.learnJutsu(new Genjutsu("Tsukuyomi", 60, 45.0, 0.90, "Itachi traps target in a nightmare world where time is controlled, heavily stunning them."));
+        i.learnJutsu(new Ninjutsu("Amaterasu", ChakraAffinity.FIRE, 60, 85.0, "Casts black flames."));
+        i.learnJutsu(new Genjutsu("Crow Clone Jutsu", 20, 10.0, 0.50, "Itachi disperses into a flock of crows to confuse and stun the enemy."));
         return i;
     }
 
     private static Shinobi createRockLee() {
-        // High HP, very low chakra pool, but starts with heavy Taijutsu
         Shinobi r = new Shinobi("Rock Lee", Village.KONOHAGAKURE, 30, ShinobiRank.GENIN, 130.0, null);
         r.setCustomAffinity(ChakraAffinity.WIND);
-        r.learnJutsu(new Taijutsu("Dynamic Entry", 0, 22.0, 0.0, "Sudden kick."));
-        r.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 35.0, 0.0, "Spinning sweep kick."));
-        r.learnJutsu(new Taijutsu("Primary Lotus", 10, 58.0, 15.0, "Launches opponent and slams them."));
-        r.learnJutsu(new Taijutsu("Hidden Lotus", 20, 95.0, 35.0, "Opens the inner gates for extreme impact."));
+        r.learnJutsu(new Taijutsu("Drunken Fist", 0, 45.0, 0.0, "Lee's unpredictable, high-velocity drunken movements."));
+        r.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 32.0, 0.0, "A spinning low taijutsu kick sweeping the opponent off their feet."));
+        r.learnJutsu(new Taijutsu("Primary Lotus", 10, 55.0, 15.0, "A dangerous pile-driver that causes fatigue to the user."));
+        r.learnJutsu(new Taijutsu("Hidden Lotus", 20, 90.0, 35.0, "Opening the Five Gates to strike at extreme speeds, severely exhausting the user."));
         return r;
     }
 
@@ -281,44 +285,47 @@ public class Main {
         Shinobi cpu = null;
         switch (diff) {
             case 1:
-                cpu = new Shinobi("Konohamaru", Village.KONOHAGAKURE, 45, ShinobiRank.ACADEMY_STUDENT, 70.0);
+                cpu = new Shinobi("Konohamaru", Village.KONOHAGAKURE, 50, ShinobiRank.ACADEMY_STUDENT, 75.0);
                 cpu.setCustomAffinity(ChakraAffinity.WIND);
-                cpu.learnJutsu(new Taijutsu("Dynamic Entry", 0, 18.0, 0.0, "Slamming kick."));
+                cpu.learnJutsu(new Taijutsu("Shadow Clone Jutsu", 15, 30.0, 0.0, "Naruto/Konohamaru clones strike in kinetic cohesion."));
+                cpu.learnJutsu(new Ninjutsu("Rasengan", ChakraAffinity.WIND, 50, 75.0, "A spinning sphere of concentrated chakra in the palm."));
+                cpu.learnJutsu(new Ninjutsu("Burning Ash", ChakraAffinity.FIRE, 30, 42.0, "Spits gunpowder ash and ignites it."));
                 break;
             case 2:
                 cpu = new Shinobi("Kiba Inuzuka", Village.KONOHAGAKURE, 60, ShinobiRank.GENIN, 90.0);
                 cpu.setCustomAffinity(ChakraAffinity.EARTH);
-                cpu.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 28.0, 0.0, "Spinning sweep kick."));
-                cpu.learnJutsu(new Ninjutsu("Earth Spike", ChakraAffinity.EARTH, 18, 24.0, "Rock strike."));
+                cpu.learnJutsu(new Taijutsu("Fang Over Fang", 10, 40.0, 5.0, "Kiba and Akamaru spin like drills to pierce the opponent."));
+                cpu.learnJutsu(new Taijutsu("Two-Headed Wolf", 30, 70.0, 20.0, "Transforms into a giant multi-headed beast, crushing the enemy."));
+                cpu.learnJutsu(new Taijutsu("Dynamic Entry", 0, 20.0, 0.0, "Aerial physical kick."));
                 break;
             case 3:
-                cpu = new Shinobi("Shikamaru Nara", Village.KONOHAGAKURE, 90, ShinobiRank.CHUNIN, 110.0);
-                cpu.setCustomAffinity(ChakraAffinity.EARTH);
-                cpu.learnJutsu(new Genjutsu("Tree Bind Death", 25, 16.0, 0.70, "Restraining shadow-bind."));
-                cpu.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 28.0, 0.0, "Sweeps the target."));
-                // Level stats up
+                Clan nara = new Clan("Nara", Village.KONOHAGAKURE, ChakraAffinity.EARTH, "Shadow Possession");
+                cpu = new Shinobi("Shikamaru Nara", Village.KONOHAGAKURE, 90, ShinobiRank.CHUNIN, 110.0, nara);
+                cpu.learnJutsu(new Genjutsu("Shadow Possession", 25, 10.0, 0.70, "Shikamaru binds the target's shadow, freezing them in place."));
+                cpu.learnJutsu(new Genjutsu("Shadow Strangle", 40, 35.0, 0.70, "Strangles the target with physical shadow bindings."));
                 levelUpCpuTo(cpu, 14);
                 break;
             case 4:
                 cpu = new Shinobi("Asuma Sarutobi", Village.KONOHAGAKURE, 110, ShinobiRank.JONIN, 130.0);
                 cpu.setCustomAffinity(ChakraAffinity.WIND);
-                cpu.learnJutsu(new Ninjutsu("Wind Cutter", ChakraAffinity.WIND, 20, 32.0, "Cutting wind claws."));
-                cpu.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 30.0, 0.0, "Hurricane kick."));
+                cpu.learnJutsu(new Taijutsu("Flying Swallow", 15, 45.0, 0.0, "Asuma infuses wind chakra into trench knives, extending blade length."));
+                cpu.learnJutsu(new Ninjutsu("Burning Ash", ChakraAffinity.FIRE, 30, 42.0, "Spits gunpowder ash and ignites it."));
+                cpu.learnJutsu(new Taijutsu("Dynamic Entry", 0, 20.0, 0.0, "Basic combat kick."));
                 levelUpCpuTo(cpu, 28);
                 break;
             case 5:
                 cpu = new Shinobi("Orochimaru", Village.KONOHAGAKURE, 180, ShinobiRank.KAGE, 180.0);
                 cpu.setCustomAffinity(ChakraAffinity.WIND);
-                cpu.learnJutsu(new Ninjutsu("Wind Cutter", ChakraAffinity.WIND, 20, 35.0, "Fierce wind gusts."));
-                cpu.learnJutsu(new Ninjutsu("Water Dragon Bullet", ChakraAffinity.WATER, 45, 68.0, "Massive water assault."));
-                cpu.learnJutsu(new Genjutsu("Temple of Nirvana", 40, 25.0, 0.75, "Fills arena with feathers."));
+                cpu.learnJutsu(new Ninjutsu("Snake Hands", ChakraAffinity.EARTH, 25, 35.0, "Orochimaru summons multiple snakes from his sleeves to constrict target."));
+                cpu.learnJutsu(new Ninjutsu("Edo Tensei", ChakraAffinity.EARTH, 80, 115.0, "Reanimates legendary warriors to strike down the opponent."));
+                cpu.learnJutsu(new Genjutsu("Temple of Nirvana", 40, 22.0, 0.75, "Causes a rain of white feathers, putting the target to sleep (stun)."));
                 levelUpCpuTo(cpu, 45);
                 break;
             case 6:
                 cpu = new Shinobi("Madara Uchiha", Village.KONOHAGAKURE, 250, ShinobiRank.KAGE, 250.0, uchiha);
-                cpu.learnJutsu(new Ninjutsu("Dragon Fire Technique", ChakraAffinity.FIRE, 40, 65.0, "Incinerating flames."));
-                cpu.learnJutsu(new Ninjutsu("Chidori", ChakraAffinity.LIGHTNING, 55, 80.0, "Chakra piercing blade."));
-                cpu.learnJutsu(new Genjutsu("Tsukuyomi", 60, 50.0, 0.90, "Mind shattering illusion."));
+                cpu.learnJutsu(new Ninjutsu("Majestic Destroyer Flame", ChakraAffinity.FIRE, 50, 80.0, "Uchiha style total-war flame wall that incinerates target."));
+                cpu.learnJutsu(new Ninjutsu("Tengai Shinsei", ChakraAffinity.EARTH, 95, 140.0, "Madara drops a giant meteor from the atmosphere onto the arena."));
+                cpu.learnJutsu(new Taijutsu("Susanoo Strike", 15, 55.0, 0.0, "Madara strikes with Susanoo arms."));
                 levelUpCpuTo(cpu, 70);
                 break;
         }
@@ -343,27 +350,27 @@ public class Main {
         
         Shinobi round1 = new Shinobi("Konohamaru", Village.KONOHAGAKURE, 50, ShinobiRank.ACADEMY_STUDENT, 75.0);
         round1.setCustomAffinity(ChakraAffinity.WIND);
-        round1.learnJutsu(new Taijutsu("Dynamic Entry", 0, 18.0, 0.0, "Sudden kick."));
+        round1.learnJutsu(new Taijutsu("Shadow Clone Jutsu", 15, 30.0, 0.0, "Clones strike."));
+        round1.learnJutsu(new Ninjutsu("Rasengan", ChakraAffinity.WIND, 50, 75.0, "Rasengan."));
         levelUpCpuTo(round1, 3);
         ladder.add(round1);
 
         Shinobi round2 = new Shinobi("Temari", Village.SUNAGAKURE, 80, ShinobiRank.GENIN, 100.0);
         round2.setCustomAffinity(ChakraAffinity.WIND);
-        round2.learnJutsu(new Ninjutsu("Wind Cutter", ChakraAffinity.WIND, 20, 30.0, "Fan gusts."));
-        round2.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 26.0, 0.0, "Defensive sweep."));
+        round2.learnJutsu(new Ninjutsu("Wind Scythe Jutsu", ChakraAffinity.WIND, 25, 38.0, "Zoning winds."));
+        round2.learnJutsu(new Ninjutsu("Quick Beheading Dance", ChakraAffinity.WIND, 60, 85.0, "Summons Kamatari."));
         levelUpCpuTo(round2, 15);
         ladder.add(round2);
 
         Shinobi round3 = new Shinobi("Neji Hyuga", Village.KONOHAGAKURE, 110, ShinobiRank.CHUNIN, 130.0, hyuga);
-        round3.learnJutsu(new Taijutsu("Leaf Hurricane", 0, 30.0, 0.0, "Palm rotation kick."));
-        round3.learnJutsu(new Taijutsu("Primary Lotus", 10, 50.0, 15.0, "Gentle-fist force."));
+        round3.learnJutsu(new Taijutsu("Eight Trigrams 64 Palms", 15, 75.0, 0.0, "Gentle fist lock."));
+        round3.learnJutsu(new Taijutsu("Revolving Heaven", 30, 45.0, 0.0, "Absolute rotation."));
         levelUpCpuTo(round3, 30);
         ladder.add(round3);
 
         Shinobi round4 = new Shinobi("Gaara of the Sand", Village.SUNAGAKURE, 160, ShinobiRank.JONIN, 170.0, kazekage);
-        round4.learnJutsu(new Ninjutsu("Earth Spike", ChakraAffinity.EARTH, 18, 25.0, "Sand spike."));
-        round4.learnJutsu(new Ninjutsu("Earth Golem", ChakraAffinity.EARTH, 48, 65.0, "Sand shield golem."));
-        round4.learnJutsu(new Genjutsu("Tree Bind Death", 25, 20.0, 0.65, "Sand confinement."));
+        round4.learnJutsu(new Ninjutsu("Sand Coffin & Burial", ChakraAffinity.EARTH, 45, 65.0, "Sand bindings."));
+        round4.learnJutsu(new Ninjutsu("Sand Tsunami", ChakraAffinity.EARTH, 75, 95.0, "Tidal wave sand."));
         levelUpCpuTo(round4, 45);
         ladder.add(round4);
 
