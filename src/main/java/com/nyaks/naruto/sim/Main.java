@@ -42,14 +42,17 @@ public class Main {
                     displayShinobiProfile();
                     break;
                 case "5":
-                    characterSelectionScreen(); // Switch Shinobi
+                    startMultiplayerMode();
                     break;
                 case "6":
+                    characterSelectionScreen(); // Switch Shinobi
+                    break;
+                case "7":
                     System.out.println("\n👋 Thank you for playing Naruto Battle Simulator! Farewell, Shinobi! 🍃\n");
                     running = false;
                     break;
                 default:
-                    System.out.println("❌ Invalid option. Please select 1 to 6.");
+                    System.out.println("❌ Invalid option. Please select 1 to 7.");
             }
         }
     }
@@ -78,8 +81,9 @@ public class Main {
         System.out.println(" [2] 🏆 Tournament Mode (Climb the Shinobi Ranks!)");
         System.out.println(" [3] 🍃 Visit Konoha Jutsu Shop");
         System.out.println(" [4] 📜 View Shinobi Stats & Known Jutsus");
-        System.out.println(" [5] 👥 Switch Shinobi / Create Custom Character");
-        System.out.println(" [6] 🚪 Exit Game");
+        System.out.println(" [5] 🌐 Multiplayer Online Mode");
+        System.out.println(" [6] 👥 Switch Shinobi / Create Custom Character");
+        System.out.println(" [7] 🚪 Exit Game");
         System.out.println("=================================================================");
     }
 
@@ -458,6 +462,29 @@ public class Main {
         System.out.println("===================================================\n");
         System.out.println("Press Enter to return...");
         scanner.nextLine();
+    }
+
+    private static void startMultiplayerMode() {
+        System.out.println("\n🌐 MULTIPLAYER ONLINE MODE 🌐");
+        System.out.println("Connect to a remote game server and battle other live players!");
+        String ip = getSafeStringInput("Enter Server IP Address (default: localhost): ");
+        if (ip.isEmpty()) {
+            ip = "localhost";
+        }
+        
+        System.out.print("Enter Server Port (default: 9000): ");
+        String portStr = scanner.nextLine().trim();
+        int port = 9000;
+        if (!portStr.isEmpty()) {
+            try {
+                port = Integer.parseInt(portStr);
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Invalid port entered. Using default port 9000.");
+            }
+        }
+        
+        GameClient client = new GameClient(ip, port, playerShinobi);
+        client.start(scanner);
     }
 
     private static String getSafeStringInput(String prompt) {

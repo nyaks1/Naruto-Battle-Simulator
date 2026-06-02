@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import main.java.com.nyaks.naruto.sim.Clan.Clan;
 import main.java.com.nyaks.naruto.sim.Jutsu.Jutsu;
+import main.java.com.nyaks.naruto.sim.Jutsu.Ninjutsu;
+import main.java.com.nyaks.naruto.sim.Jutsu.Taijutsu;
+import main.java.com.nyaks.naruto.sim.Jutsu.Genjutsu;
 import main.java.com.nyaks.naruto.sim.enums.*;
 
 public class Shinobi {
@@ -310,5 +313,117 @@ public class Shinobi {
             return "🏆 RANK UP! " + name + " has been promoted from " + oldRank + " to " + newRank + "! 🏆";
         }
         return "";
+    }
+
+    public String serialize() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(";");
+        sb.append(village.name()).append(";");
+        sb.append(clan != null ? clan.getName() : "None").append(";");
+        sb.append(level).append(";");
+        sb.append(experience).append(";");
+        sb.append(ryo).append(";");
+        sb.append(attackPower).append(";");
+        sb.append(defensePower).append(";");
+        sb.append(speed).append(";");
+        sb.append(maxHealth).append(";");
+        sb.append(maxChakra).append(";");
+        sb.append(rank.name()).append(";");
+        
+        sb.append(knownJutsus.size()).append(";");
+        for (Jutsu j : knownJutsus) {
+            sb.append(j.getName()).append("|");
+            
+            String typeName = "NINJUTSU";
+            if (j instanceof Taijutsu) typeName = "TAIJUTSU";
+            else if (j instanceof Genjutsu) typeName = "GENJUTSU";
+            sb.append(typeName).append("|");
+            
+            sb.append(j.getAffinity() != null ? j.getAffinity().name() : "None").append("|");
+            sb.append(j.getChakraCost()).append("|");
+            sb.append(j.getDamage()).append("|");
+            sb.append(j.getDescription().replace(";", ",")).append("|");
+            
+            if (j instanceof Taijutsu) {
+                sb.append(((Taijutsu) j).getHealthCost());
+            } else if (j instanceof Genjutsu) {
+                sb.append(((Genjutsu) j).getStunChance());
+            } else {
+                sb.append("0.0");
+            }
+            sb.append(";");
+        }
+        return sb.toString();
+    }
+
+    public static Shinobi deserialize(String data) {
+        String[] parts = data.split(";");
+        String name = parts[0];
+        Village village = Village.valueOf(parts[1]);
+        String clanName = parts[2];
+        
+        Clan clan = null;
+        if (!clanName.equalsIgnoreCase("None")) {
+            if (clanName.equalsIgnoreCase("Uzumaki")) {
+                clan = new Clan("Uzumaki", Village.KONOHAGAKURE, ChakraAffinity.WIND, "Adamantine Chains", "Giant Rasengan");
+            } else if (clanName.equalsIgnoreCase("Uchiha")) {
+                clan = new Clan("Uchiha", Village.KONOHAGAKURE, ChakraAffinity.FIRE, "Sharingan", "Fireball Jutsu");
+            } else if (clanName.equalsIgnoreCase("Senju")) {
+                clan = new Clan("Senju", Village.KONOHAGAKURE, ChakraAffinity.EARTH, "Wood Release", "Wood Style: Deep Forest Emergence");
+            } else if (clanName.equalsIgnoreCase("Hyuga")) {
+                clan = new Clan("Hyuga", Village.KONOHAGAKURE, ChakraAffinity.WIND, "Byakugan", "Eight Trigrams Sixty-Four Palms");
+            } else if (clanName.equalsIgnoreCase("Kazekage")) {
+                clan = new Clan("Kazekage", Village.SUNAGAKURE, ChakraAffinity.WIND, "Magnet Release", "Sand Coffin");
+            } else {
+                clan = new Clan(clanName, village, ChakraAffinity.WIND, "None");
+            }
+        }
+        
+        int level = Integer.parseInt(parts[3]);
+        int exp = Integer.parseInt(parts[4]);
+        int ryo = Integer.parseInt(parts[5]);
+        double attack = Double.parseDouble(parts[6]);
+        double defense = Double.parseDouble(parts[7]);
+        double speed = Double.parseDouble(parts[8]);
+        double maxHP = Double.parseDouble(parts[9]);
+        int maxCP = Integer.parseInt(parts[10]);
+        ShinobiRank rank = ShinobiRank.valueOf(parts[11]);
+        
+        Shinobi s = new Shinobi(name, village, maxCP, rank, maxHP, clan);
+        s.level = level;
+        s.experience = exp;
+        s.ryo = ryo;
+        s.attackPower = attack;
+        s.defensePower = defense;
+        s.speed = speed;
+        s.currentHealth = maxHP;
+        s.currentChakra = maxCP;
+        
+        int jutsuCount = Integer.parseInt(parts[12]);
+        for (int i = 0; i < jutsuCount; i++) {
+            String[] jParts = parts[13 + i].split("\\|");
+            String jName = jParts[0];
+            String type = jParts[1];
+            String affStr = jParts[2];
+            ChakraAffinity affinity = affStr.equalsIgnoreCase("None") ? null : ChakraAffinity.valueOf(affStr);
+            int cost = Integer.parseInt(jParts[3]);
+            double dmg = Double.parseDouble(jParts[4]);
+            String desc = jParts[5];
+            double extra = Double.parseDouble(jParts[6]);
+            
+            Jutsu j = null;
+            if (type.equalsIgnoreCase("NINJUTSU")) {
+                j = new Ninjutsu(jName, affinity, cost, dmg, desc);
+            } else if (type.equalsIgnoreCase("TAIJUTSU")) {
+                j = new Taijutsu(jName, cost, dmg, extra, desc);
+            } else if (type.equalsIgnoreCase("GENJUTSU")) {
+                j = new Genjutsu(jName, cost, dmg, extra, desc);
+            }
+            
+            if (j != null) {
+                s.learnJutsu(j);
+            }
+        }
+        return s;
     }
 }

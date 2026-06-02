@@ -13,9 +13,13 @@ You can build and run this project using **Maven** (recommended) or direct **Jav
    ```bash
    mvn compile
    ```
-2. **Run**:
+2. **Run Client / Single Player Game**:
    ```bash
    mvn exec:java
+   ```
+3. **Run Multiplayer Server**:
+   ```bash
+   mvn exec:java -Dexec.mainClass="main.java.com.nyaks.naruto.sim.GameServer"
    ```
 
 ### Option B: Using Direct Java CLI
@@ -27,9 +31,13 @@ You can build and run this project using **Maven** (recommended) or direct **Jav
                               src/main/java/com/nyaks/naruto/sim/Shinobi/*.java \
                               src/main/java/com/nyaks/naruto/sim/*.java
    ```
-2. **Run**:
+2. **Run Client / Single Player Game**:
    ```bash
    java -cp bin main.java.com.nyaks.naruto.sim.Main
+   ```
+3. **Run Multiplayer Server**:
+   ```bash
+   java -cp bin main.java.com.nyaks.naruto.sim.GameServer
    ```
 
 ---
