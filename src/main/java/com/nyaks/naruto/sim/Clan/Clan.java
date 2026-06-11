@@ -6,21 +6,54 @@ public class Clan {
   private ChakraAffinity affinity;
   private String kekkeiGenkai;
   private String clanJutsu;
+  private double healthMultiplier;
+  private double chakraMultiplier;
+  private double attackMultiplier;
+  private double defenseMultiplier;
 
   public Clan(String name, Village village, ChakraAffinity affinity, String kekkeiGenkai, String clanJutsu) {
-    this.name = name;
-    this.village = village;
-    this.affinity = affinity;
+    this(name, village, affinity, clanJutsu);
     this.kekkeiGenkai = kekkeiGenkai;
-    this.clanJutsu = clanJutsu;
   }
 
-  public Clan (String name, Village village, ChakraAffinity affinity, String clanJutsu) {
+  public Clan(String name, Village village, ChakraAffinity affinity, String clanJutsu) {
     this.name = name;
     this.village = village;
     this.affinity = affinity;
     this.kekkeiGenkai = "None";
     this.clanJutsu = clanJutsu;
+    this.healthMultiplier = resolveHealthMultiplier(name);
+    this.chakraMultiplier = resolveChakraMultiplier(name);
+    this.attackMultiplier = resolveAttackMultiplier(name);
+    this.defenseMultiplier = resolveDefenseMultiplier(name);
+  }
+
+  private static double resolveHealthMultiplier(String clanName) {
+    return switch (clanName.toLowerCase()) {
+      case "uzumaki", "senju" -> 1.25;
+      default -> 1.0;
+    };
+  }
+
+  private static double resolveChakraMultiplier(String clanName) {
+    return switch (clanName.toLowerCase()) {
+      case "uzumaki", "nara" -> 1.20;
+      default -> 1.0;
+    };
+  }
+
+  private static double resolveAttackMultiplier(String clanName) {
+    return switch (clanName.toLowerCase()) {
+      case "uchiha", "senju" -> 1.15;
+      default -> 1.0;
+    };
+  }
+
+  private static double resolveDefenseMultiplier(String clanName) {
+    return switch (clanName.toLowerCase()) {
+      case "hyuga", "kazekage" -> 1.20;
+      default -> 1.0;
+    };
   }
 
   public String getName() {
@@ -43,32 +76,19 @@ public class Clan {
     return clanJutsu;
   }
 
-  // Getters for multipliers based on clan characteristics
   public double getHealthMultiplier() {
-    if (name.equalsIgnoreCase("Uzumaki") || name.equalsIgnoreCase("Senju")) {
-      return 1.25; // 25% boost
-    }
-    return 1.0;
+    return healthMultiplier;
   }
 
   public double getChakraMultiplier() {
-    if (name.equalsIgnoreCase("Uzumaki") || name.equalsIgnoreCase("Nara")) {
-      return 1.20; // 20% boost
-    }
-    return 1.0;
+    return chakraMultiplier;
   }
 
   public double getAttackMultiplier() {
-    if (name.equalsIgnoreCase("Uchiha") || name.equalsIgnoreCase("Senju")) {
-      return 1.15; // 15% boost
-    }
-    return 1.0;
+    return attackMultiplier;
   }
 
   public double getDefenseMultiplier() {
-    if (name.equalsIgnoreCase("Hyuga") || name.equalsIgnoreCase("Kazekage")) {
-      return 1.20; // 20% boost
-    }
-    return 1.0;
+    return defenseMultiplier;
   }
 }

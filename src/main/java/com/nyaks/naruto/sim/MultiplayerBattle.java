@@ -240,11 +240,11 @@ public class MultiplayerBattle implements Runnable {
             double baseDmg = (8.0 + Math.random() * 5.0) * attShinobi.getAttackMultiplier();
             double finalDmg = baseDmg / defShinobi.getDefenseMultiplier();
             if (finalDmg < 0) finalDmg = 0;
-            
+
             defShinobi.applyDamage(finalDmg);
             attShinobi.rechargeChakra(15);
-            
-            sendBoth("⚔️ " + attShinobi.getName() + " strikes " + defShinobi.getName() + " with a taijutsu blow, dealing " + 
+
+            sendBoth("⚔️ " + attShinobi.getName() + " strikes " + defShinobi.getName() + " with a taijutsu blow, dealing " +
                      String.format("%.1f", finalDmg) + " damage!");
             sendBoth("⚡ " + attShinobi.getName() + " recovers 15 CP (Chakra Pool)!");
         }
@@ -273,12 +273,12 @@ public class MultiplayerBattle implements Runnable {
         }
 
         String stunTag = s.isStunned() ? " [STUNNED]" : "";
-        String status = String.format("%-18s | HP: [%s] %5.1f/%5.1f | CP: [%s] %3d/%3d %s", 
-            s.getName() + " (Lvl " + s.getLevel() + ")", 
-            hpStr.toString(), s.getCurrentHealth(), s.getMaxHealth(), 
-            cpStr.toString(), s.getCurrentChakra(), s.getMaxChakra(), 
+        String status = String.format("%-18s | HP: [%s] %5.1f/%5.1f | CP: [%s] %3d/%3d %s",
+            s.getName() + " (Lvl " + s.getLevel() + ")",
+            hpStr.toString(), s.getCurrentHealth(), s.getMaxHealth(),
+            cpStr.toString(), s.getCurrentChakra(), s.getMaxChakra(),
             stunTag);
-        
+
         sendBoth(status);
     }
 

@@ -282,53 +282,15 @@ public class Main {
         int diff = getSafeIntInput("Choose opponent (0-6): ", 0, 6);
         if (diff == 0) return;
 
-        Shinobi cpu = null;
-        switch (diff) {
-            case 1:
-                cpu = new Shinobi("Konohamaru", Village.KONOHAGAKURE, 50, ShinobiRank.ACADEMY_STUDENT, 75.0);
-                cpu.setCustomAffinity(ChakraAffinity.WIND);
-                cpu.learnJutsu(new Taijutsu("Shadow Clone Jutsu", 15, 30.0, 0.0, "Naruto/Konohamaru clones strike in kinetic cohesion."));
-                cpu.learnJutsu(new Ninjutsu("Rasengan", ChakraAffinity.WIND, 50, 75.0, "A spinning sphere of concentrated chakra in the palm."));
-                cpu.learnJutsu(new Ninjutsu("Burning Ash", ChakraAffinity.FIRE, 30, 42.0, "Spits gunpowder ash and ignites it."));
-                break;
-            case 2:
-                cpu = new Shinobi("Kiba Inuzuka", Village.KONOHAGAKURE, 60, ShinobiRank.GENIN, 90.0);
-                cpu.setCustomAffinity(ChakraAffinity.EARTH);
-                cpu.learnJutsu(new Taijutsu("Fang Over Fang", 10, 40.0, 5.0, "Kiba and Akamaru spin like drills to pierce the opponent."));
-                cpu.learnJutsu(new Taijutsu("Two-Headed Wolf", 30, 70.0, 20.0, "Transforms into a giant multi-headed beast, crushing the enemy."));
-                cpu.learnJutsu(new Taijutsu("Dynamic Entry", 0, 20.0, 0.0, "Aerial physical kick."));
-                break;
-            case 3:
-                Clan nara = new Clan("Nara", Village.KONOHAGAKURE, ChakraAffinity.EARTH, "Shadow Possession");
-                cpu = new Shinobi("Shikamaru Nara", Village.KONOHAGAKURE, 90, ShinobiRank.CHUNIN, 110.0, nara);
-                cpu.learnJutsu(new Genjutsu("Shadow Possession", 25, 10.0, 0.70, "Shikamaru binds the target's shadow, freezing them in place."));
-                cpu.learnJutsu(new Genjutsu("Shadow Strangle", 40, 35.0, 0.70, "Strangles the target with physical shadow bindings."));
-                levelUpCpuTo(cpu, 14);
-                break;
-            case 4:
-                cpu = new Shinobi("Asuma Sarutobi", Village.KONOHAGAKURE, 110, ShinobiRank.JONIN, 130.0);
-                cpu.setCustomAffinity(ChakraAffinity.WIND);
-                cpu.learnJutsu(new Taijutsu("Flying Swallow", 15, 45.0, 0.0, "Asuma infuses wind chakra into trench knives, extending blade length."));
-                cpu.learnJutsu(new Ninjutsu("Burning Ash", ChakraAffinity.FIRE, 30, 42.0, "Spits gunpowder ash and ignites it."));
-                cpu.learnJutsu(new Taijutsu("Dynamic Entry", 0, 20.0, 0.0, "Basic combat kick."));
-                levelUpCpuTo(cpu, 28);
-                break;
-            case 5:
-                cpu = new Shinobi("Orochimaru", Village.KONOHAGAKURE, 180, ShinobiRank.KAGE, 180.0);
-                cpu.setCustomAffinity(ChakraAffinity.WIND);
-                cpu.learnJutsu(new Ninjutsu("Snake Hands", ChakraAffinity.EARTH, 25, 35.0, "Orochimaru summons multiple snakes from his sleeves to constrict target."));
-                cpu.learnJutsu(new Ninjutsu("Edo Tensei", ChakraAffinity.EARTH, 80, 115.0, "Reanimates legendary warriors to strike down the opponent."));
-                cpu.learnJutsu(new Genjutsu("Temple of Nirvana", 40, 22.0, 0.75, "Causes a rain of white feathers, putting the target to sleep (stun)."));
-                levelUpCpuTo(cpu, 45);
-                break;
-            case 6:
-                cpu = new Shinobi("Madara Uchiha", Village.KONOHAGAKURE, 250, ShinobiRank.KAGE, 250.0, uchiha);
-                cpu.learnJutsu(new Ninjutsu("Majestic Destroyer Flame", ChakraAffinity.FIRE, 50, 80.0, "Uchiha style total-war flame wall that incinerates target."));
-                cpu.learnJutsu(new Ninjutsu("Tengai Shinsei", ChakraAffinity.EARTH, 95, 140.0, "Madara drops a giant meteor from the atmosphere onto the arena."));
-                cpu.learnJutsu(new Taijutsu("Susanoo Strike", 15, 55.0, 0.0, "Madara strikes with Susanoo arms."));
-                levelUpCpuTo(cpu, 70);
-                break;
-        }
+        Shinobi cpu = switch (diff) {
+            case 1 -> CPUOpponents.konohamaru();
+            case 2 -> CPUOpponents.kiba();
+            case 3 -> CPUOpponents.shikamaru();
+            case 4 -> CPUOpponents.asuma();
+            case 5 -> CPUOpponents.orochimaru();
+            case 6 -> CPUOpponents.madara();
+            default -> null;
+        };
 
         Battle battle = new Battle(playerShinobi, cpu, true, scanner);
         battle.start();
@@ -346,33 +308,14 @@ public class Main {
         }
 
         // Setup 4 opponents
+        Shinobi round1 = CPUOpponents.konohamaru();
+        CPUOpponents.levelUpCpuTo(round1, 3);
+
         List<Shinobi> ladder = new ArrayList<>();
-        
-        Shinobi round1 = new Shinobi("Konohamaru", Village.KONOHAGAKURE, 50, ShinobiRank.ACADEMY_STUDENT, 75.0);
-        round1.setCustomAffinity(ChakraAffinity.WIND);
-        round1.learnJutsu(new Taijutsu("Shadow Clone Jutsu", 15, 30.0, 0.0, "Clones strike."));
-        round1.learnJutsu(new Ninjutsu("Rasengan", ChakraAffinity.WIND, 50, 75.0, "Rasengan."));
-        levelUpCpuTo(round1, 3);
         ladder.add(round1);
-
-        Shinobi round2 = new Shinobi("Temari", Village.SUNAGAKURE, 80, ShinobiRank.GENIN, 100.0);
-        round2.setCustomAffinity(ChakraAffinity.WIND);
-        round2.learnJutsu(new Ninjutsu("Wind Scythe Jutsu", ChakraAffinity.WIND, 25, 38.0, "Zoning winds."));
-        round2.learnJutsu(new Ninjutsu("Quick Beheading Dance", ChakraAffinity.WIND, 60, 85.0, "Summons Kamatari."));
-        levelUpCpuTo(round2, 15);
-        ladder.add(round2);
-
-        Shinobi round3 = new Shinobi("Neji Hyuga", Village.KONOHAGAKURE, 110, ShinobiRank.CHUNIN, 130.0, hyuga);
-        round3.learnJutsu(new Taijutsu("Eight Trigrams 64 Palms", 15, 75.0, 0.0, "Gentle fist lock."));
-        round3.learnJutsu(new Taijutsu("Revolving Heaven", 30, 45.0, 0.0, "Absolute rotation."));
-        levelUpCpuTo(round3, 30);
-        ladder.add(round3);
-
-        Shinobi round4 = new Shinobi("Gaara of the Sand", Village.SUNAGAKURE, 160, ShinobiRank.JONIN, 170.0, kazekage);
-        round4.learnJutsu(new Ninjutsu("Sand Coffin & Burial", ChakraAffinity.EARTH, 45, 65.0, "Sand bindings."));
-        round4.learnJutsu(new Ninjutsu("Sand Tsunami", ChakraAffinity.EARTH, 75, 95.0, "Tidal wave sand."));
-        levelUpCpuTo(round4, 45);
-        ladder.add(round4);
+        ladder.add(CPUOpponents.temari());
+        ladder.add(CPUOpponents.neji());
+        ladder.add(CPUOpponents.gaaraFinal());
 
         int roundNum = 1;
         boolean cleanSweep = true;
@@ -406,16 +349,6 @@ public class Main {
             playerShinobi.addRyo(500);
             System.out.println(playerShinobi.addExperience(300));
         }
-    }
-
-    private static void levelUpCpuTo(Shinobi cpu, int targetLevel) {
-        // Fast stats adjustment to level up CPU without printing out logs
-        for (int l = 1; l < targetLevel; l++) {
-            cpu.addExperience(cpu.getExpNeededForNextLevel());
-        }
-        // Restore CPU stats
-        cpu.setHealth(cpu.getMaxHealth());
-        cpu.setChakra(cpu.getMaxChakra());
     }
 
     private static void visitJutsuShop() {

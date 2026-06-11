@@ -91,20 +91,28 @@ public class Shinobi {
         return clan;
     }
 
-    public void setClan(Clan clan) {
-        this.clan = clan;
-        // Recalculate multipliers
-        if (clan != null) {
-            this.customAffinity = clan.getAffinity();
-            double oldHealthRatio = this.currentHealth / this.maxHealth;
-            double oldChakraRatio = (double) this.currentChakra / this.maxChakra;
-            
-            this.maxHealth = (this.maxHealth / clan.getHealthMultiplier()) * clan.getHealthMultiplier(); // simple re-cap
-            this.currentHealth = this.maxHealth * oldHealthRatio;
-            this.maxChakra = (int) ((this.maxChakra / clan.getChakraMultiplier()) * clan.getChakraMultiplier());
-            this.currentChakra = (int) (this.maxChakra * oldChakraRatio);
-        }
+  public void setClan(Clan clan) {
+    if (this.clan == clan) return;
+    
+    double oldHealthRatio = this.maxHealth > 0 ? this.currentHealth / this.maxHealth : 1.0;
+    double oldChakraRatio = this.maxChakra > 0 ? (double) this.currentChakra / this.maxChakra : 1.0;
+    
+    Clan oldClan = this.clan;
+    this.clan = clan;
+    
+    if (clan != null) {
+        this.customAffinity = clan.getAffinity();
+        
+        // Rebase maxHealth to level 1 value, then apply new multiplier
+        double baseHealth = (oldClan != null) ? this.maxHealth / oldClan.getHealthMultiplier() : this.maxHealth;
+        this.maxHealth = baseHealth * clan.getHealthMultiplier();
+        this.currentHealth = this.maxHealth * oldHealthRatio;
+        
+        double baseChakra = (oldClan != null) ? this.maxChakra / oldClan.getChakraMultiplier() : this.maxChakra;
+        this.maxChakra = (int) (baseChakra * clan.getChakraMultiplier());
+        this.currentChakra = (int) (this.maxChakra * oldChakraRatio);
     }
+  }
 
     public ChakraAffinity getChakraAffinity() {
         return (clan != null) ? clan.getAffinity() : customAffinity;
