@@ -84,4 +84,4 @@ This project serves as a showcase of the four pillars of Object-Oriented Program
   - Taijutsu (like *Primary* and *Hidden Lotus*) requires no CP, but drains the user's HP to execute massive physical combos.
 * **Progression System**: Win duels to gain EXP and level up, increasing base stats. Automatic Rank-up promotions advance your character from Academy Student to Genin, Chunin, Jonin, and Kage.
 * **Jutsu Shop**: Spend Ryo coins earned from victories to purchase and master legendary techniques.
-* **Chunin Selection Tournament**: Challenge a 4-round gauntlet against increasingly difficult CPU opponents (Konohamaru, Temari, Neji, and Gaara) to become the ultimate Arena Champion!
+* **Akatsuki Gauntlet**: Challenge a 4-round gauntlet against the Akatsuki (Hidan, Deidara, Kisame, and Pain) to become the ultimate S-Rank shinobi!

@@ -270,25 +270,25 @@ public class Main {
     }
 
     private static void startSingleBattle() {
-        System.out.println("\n⚔️ SELECT CPU OPPONENT DIFFICULTY ⚔️");
-        System.out.println(" [1] Academy Student: Konohamaru (Level 2)");
-        System.out.println(" [2] Genin: Kiba Inuzuka (Level 6)");
-        System.out.println(" [3] Chunin: Shikamaru Nara (Level 14)");
-        System.out.println(" [4] Jonin: Asuma Sarutobi (Level 28)");
-        System.out.println(" [5] Kage: Orochimaru (Level 45)");
-        System.out.println(" [6] Legendary: Madara Uchiha (Level 70)");
+        System.out.println("\n⚔️ SELECT AKATSUKI OPPONENT ⚔️");
+        System.out.println(" [1] Hidan - The Immortal Jashinist (Level 2)");
+        System.out.println(" [2] Konan - Angel of Ame (Level 6)");
+        System.out.println(" [3] Deidara - Explosive Artist (Level 14)");
+        System.out.println(" [4] Sasori of the Red Sand - Puppet Master (Level 28)");
+        System.out.println(" [5] Kisame Hoshigaki - Tailless Tailed Beast (Level 45)");
+        System.out.println(" [6] Pain (Nagato) - God of Shinobi (Level 70)");
         System.out.println(" [0] Cancel");
         
         int diff = getSafeIntInput("Choose opponent (0-6): ", 0, 6);
         if (diff == 0) return;
 
         Shinobi cpu = switch (diff) {
-            case 1 -> CPUOpponents.konohamaru();
-            case 2 -> CPUOpponents.kiba();
-            case 3 -> CPUOpponents.shikamaru();
-            case 4 -> CPUOpponents.asuma();
-            case 5 -> CPUOpponents.orochimaru();
-            case 6 -> CPUOpponents.madara();
+            case 1 -> CPUOpponents.hidan();
+            case 2 -> CPUOpponents.konan();
+            case 3 -> CPUOpponents.deidara();
+            case 4 -> CPUOpponents.sasori();
+            case 5 -> CPUOpponents.kisame();
+            case 6 -> CPUOpponents.pain();
             default -> null;
         };
 
@@ -297,52 +297,48 @@ public class Main {
     }
 
     private static void startTournamentMode() {
-        System.out.println("\n🏆 WELCOME TO THE CHUNIN SELECTION TOURNAMENT! 🏆");
-        System.out.println("You will fight 4 opponents consecutively. Your health is restored between rounds.");
-        System.out.println("Win all rounds to receive a massive Ryo bonus!");
-        System.out.print("Are you ready to enter the Arena? (y/n): ");
+        System.out.println("\n🏆 WELCOME TO THE AKATSUKI GAUNTLET! 🏆");
+        System.out.println("You will fight 4 Akatsuki members consecutively. Your health is restored between rounds.");
+        System.out.println("Defeat them all to earn the title of S-Rank shinobi!");
+        System.out.print("Are you ready to face the Akatsuki? (y/n): ");
         String ready = scanner.nextLine().trim().toLowerCase();
         if (!ready.equals("y") && !ready.equals("yes")) {
             System.out.println("Returning to main menu.");
             return;
         }
 
-        // Setup 4 opponents
-        Shinobi round1 = CPUOpponents.konohamaru();
-        CPUOpponents.levelUpCpuTo(round1, 3);
-
         List<Shinobi> ladder = new ArrayList<>();
-        ladder.add(round1);
-        ladder.add(CPUOpponents.temari());
-        ladder.add(CPUOpponents.neji());
-        ladder.add(CPUOpponents.gaaraFinal());
+        ladder.add(CPUOpponents.tournamentHidan());
+        ladder.add(CPUOpponents.tournamentDeidara());
+        ladder.add(CPUOpponents.tournamentKisame());
+        ladder.add(CPUOpponents.tournamentPain());
 
         int roundNum = 1;
         boolean cleanSweep = true;
 
         for (Shinobi opponent : ladder) {
             System.out.println("\n🔥=========================================================🔥");
-            System.out.println("           🏆 TOURNAMENT ROUND " + roundNum + "/4: VS " + opponent.getName() + " 🏆");
+            System.out.println("       ⚔️ AKATSUKI GAUNTLET ROUND " + roundNum + "/4: VS " + opponent.getName() + " ⚔️");
             System.out.println("🔥=========================================================🔥\n");
             
             Battle battle = new Battle(playerShinobi, opponent, true, scanner);
             Shinobi victor = battle.start();
             
             if (victor != playerShinobi) {
-                System.out.println("\n❌ You were defeated in Round " + roundNum + "! Tournament Over.");
+                System.out.println("\n❌ You were defeated by " + opponent.getName() + " in Round " + roundNum + "! Gauntlet failed.");
                 cleanSweep = false;
                 break;
             }
             
-            System.out.println("\n🎉 Victory in Round " + roundNum + "! Press Enter to proceed to the next round...");
+            System.out.println("\n🎉 Victory in Round " + roundNum + "! Press Enter to face the next Akatsuki member...");
             scanner.nextLine();
             roundNum++;
         }
 
         if (cleanSweep) {
             System.out.println("\n🏆🏅=========================================================🏅🏆");
-            System.out.println("             👑 CONGRATULATIONS, CHAMPION! 👑");
-            System.out.println("      You have swept the Chunin Selection Arena and won!");
+            System.out.println("             👑 AKATSUKI SLAYER! 👑");
+            System.out.println("      You have defeated every member of the Akatsuki!");
             System.out.println("               Bonus Reward: +500 Ryo & 300 EXP");
             System.out.println("🏆🏅=========================================================🏅🏆\n");
             
